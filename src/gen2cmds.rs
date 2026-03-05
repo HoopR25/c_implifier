@@ -81,7 +81,10 @@ pub fn centered_println(text: &str) {
 #[macro_export]
 macro_rules! cprintln {
     ($($arg: tt)*) => (
-        println!("{}", $($arg)*);
+        $(
+            print!("{}", $arg);
+        )*
+        println!();
     );
 }
 pub use cprintln;
