@@ -80,7 +80,7 @@ pub fn centered_println(text: &str) {
 //  Colored printing without the "{}", "text".color()
 #[macro_export]
 macro_rules! cprintln {
-    ($($arg: tt)*) => (
+    ($($arg:expr),* $(,)?) => (
         $(
             print!("{}", $arg);
         )*
