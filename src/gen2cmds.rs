@@ -12,7 +12,7 @@ pub fn print_list(strings: Vec<&str>, color: Option<Color>) {
     for string in strings {
         match color {
             Some(existing_color) => println!("{}", string.color(existing_color)),
-            None => println!("{}", string)
+            None => println!("{}", string),
         };
     }
 }
@@ -21,7 +21,7 @@ pub fn print_list(strings: Vec<&str>, color: Option<Color>) {
 pub fn y_or_n(color: Option<Color>) -> bool {
     match color {
         Some(existing_color) => println!("{}", "y/n?".color(existing_color)),
-        None => println!("y/n?")
+        None => println!("y/n?"),
     }
     let mut input;
     loop {
@@ -34,7 +34,7 @@ pub fn y_or_n(color: Option<Color>) -> bool {
         } else {
             match color {
                 Some(_) => println!("{}", "Invalid option (y/n)".red()),
-                None => println!("Invalid option (y/n)")
+                None => println!("Invalid option (y/n)"),
             }
         }
     }
@@ -50,13 +50,13 @@ pub fn clear_terminal() {
     match get_current_os().as_str() {
         "windows" => {
             Command::new("cls").status().unwrap();
-        },
+        }
         "linux" => {
             Command::new("clear").status().unwrap();
-        },
+        }
         "macos" => {
             Command::new("clear").status().unwrap();
-        },
+        }
         _ => {
             Command::new("clear").status().unwrap();
         }
@@ -77,5 +77,15 @@ pub fn centered_println(text: &str) {
     }
 }
 
+//  Colored printing without the "{}", "text".color()
+#[macro_export]
+macro_rules! cprintln {
+    ($($arg: tt)*) => (
+        println("{}", $($arg)*);
+    );
+}
+pub use cprintln;
+
 //  This function doesn't do anything. This is useful for (as an example) the match keyword, when you have to do something for every possible pattern.
 pub fn pass() {}
+
