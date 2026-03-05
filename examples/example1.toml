@@ -1,0 +1,8 @@
+[package]
+name = "example1"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+c_implifier = { git = "https://github.com/HoopR25/c_implifier", branch = "master"}
+
